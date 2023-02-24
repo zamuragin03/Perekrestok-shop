@@ -1,0 +1,28 @@
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic|Playfair+Display+SC:400,700&subset=latin,cyrillic);
+@import url(https://fonts.googleapis.com/css?family=Lora:400,700&subset=latin,cyrillic);
+.main-pic {
+    width: 80%;
+    /* border-top: solid 7px white;
+    border-right: solid 7px white;
+    border-bottom: solid 2px white;
+    border-left: solid 2px white;    */
+    border: 5px solid #ddd;
+    border-radius: 4px;
+    /* background-color: white; */
+    padding: 10px;
+    margin: 50px auto;
+
+    display: block;
+}
+
+.description {
+    font-family:'Lora';
+    width: 80%;
+    font-size: 25px;
+    margin: 50px auto;
+    color: white;
+    text-indent: 50px;
+    text-align: justify;
+    word-spacing: 10px;
+    line-height: 40px;
+}

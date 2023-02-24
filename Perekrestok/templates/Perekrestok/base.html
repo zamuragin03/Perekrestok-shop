@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'Perekrestok/img/logo.png' %}" type="image/x-icon">
+    <link type="text/css" rel="stylesheet" href="{% static 'Perekrestok/css/base.css' %}">
+    {% load page_tags %}
+    {% get_menu as menu %}
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <a href="{% url 'main' %}">
+        <img src="{% static 'Perekrestok/img/logo.png' %}" alt="logo" id="logo">
+
+    </a>
+
+    <div class="header">
+        <ul class="menu">
+            {% for el in menu%}
+            <li>
+                <a href="{% url el.url_name %}">{{el.title}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+
+    <div class="footer">
+        <div>
+            <h1 id="rights">
+                <a class="author-link" href="https://github.com/zamuragin03" target="_blank">Заказать сайт</a>
+                ©Все права защищены 2023-2023
+
+            </h1>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    font: "Fira Sans", sans-serif;
+    font-weight: 200;
+}
+
+html {
+    background-color: rgba(0, 128, 67, 255);
+
+}
+
+.header {
+    background-color: rgba(0, 80, 42, 255);
+    border-bottom: 2px solid white;
+    height: 15vh;
+    position: relative;
+    z-index: 0;
+
+}
+
+#logo {
+    position: absolute;
+    height: 70px;
+    background-color: transparent;
+    margin: 15px 15px;
+    z-index: 1;
+}
+
+#logo:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.menu {
+    height: 15vh;
+    line-height: 100px;
+    margin-left: 100px;
+    color: white;
+    float: left;
+    background-color: transparent;
+    list-style: none;
+}
+
+.content {
+    min-height: 75vh;
+}
+
+.menu li {
+    float: left;
+    margin-left: 50px;
+    background-color: transparent;
+
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu li {
+    margin-left: 100px;
+    font-size: 30px;
+    display: flex;
+    font-weight: 500;
+
+}
+
+.menu li a:hover {
+    cursor: pointer;
+    color: rgba(111, 183, 68, 255);
+}
+
+.footer {
+    height: 10vh;
+    border-top: 2px solid white;
+    background-color: rgba(0, 80, 42, 255);
+    position: relative;
+    margin-top: 100vh;
+}
+
+#rights,
+.author-link {
+    font-size: 24px;
+    line-height: 10vh;
+    text-align: center;
+    margin-right: 10px;
+    color: white;
+    font-weight: 100;
+}
+
+.author-link {
+    text-decoration: none;
+}
+
+.author-link:hover {
+    color: rgba(111, 183, 68, 255);
+}

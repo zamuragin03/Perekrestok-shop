@@ -1,0 +1,54 @@
+{% extends 'Perekrestok/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<link type="text/css" rel="stylesheet" href="{% static 'Perekrestok/css/catalog.css' %}">
+{% load page_tags %}
+{% get_items as items %}
+
+<div class="flex-container">
+    {% for el in items %}
+    <div class="flex-element">
+        {% if el.picture %}
+        <a href="{{ el.get_absolute_url }}">
+            <img src="{{el.picture.url }}" alt="{{el.titile}}">
+        </a>
+        {% endif %}
+        <h1>{{el.title}}</h1>
+        <!-- <a class="buy-button" href="">Купить</a> -->
+        <input class="buy-button" type="submit" name="buy" value="Купить" >
+        <h2>{{el.price}} ₽<h2>
+    </div>
+    {% endfor %}
+
+    <!-- <div class="flex-element">
+        <img src="../static/img/products/apples.jpeg" alt="">
+        <h1>Яблоки</h1>
+        <a class="buy-button" href="{% url 'show_item' 'apples' %}" target="_blank" >Купить</a>
+        <h2>40$</h2>
+    </div>
+    <div class="flex-element">
+        <img src="../static/img/products/bananas.jpeg" alt="">
+        <h1>Бананы</h1> 
+        <a class="buy-button" href="{% url 'show_item' 'bananas' %}" target="_blank" >Купить</a>
+        <h2>90$</h2>
+
+    </div>
+    <div class="flex-element">
+        <img src="../static/img/products/qiwi.jpeg" alt="">
+        <h1>Киви</h1>
+        <a class="buy-button" href="{% url 'show_item' 'qiwies' %}" target="_blank" >Купить</a>
+        <h2>100$</h2>
+
+    </div>
+    <div class="flex-element">
+        <img src="../static/img/products/pears.jpeg" alt="">
+        <h1>Груши</h1>
+        <a class="buy-button" href="{% url 'show_item' 'pears' %}" target="_blank" >Купить</a>
+        <h2>20$</h2>
+    </div> -->
+    
+</div>
+
+{% endblock %}

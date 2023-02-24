@@ -1,0 +1,32 @@
+.picture{
+    /* height: 600px; */
+    display: block;
+    width: 800px;
+    margin: 0 auto;
+    justify-content: center;
+    
+
+}
+.elements{
+    margin-left: 50px;
+    font-size: 40px;
+    width: 900px;
+    background: white;
+    padding: 50px;
+    line-height: 70px;
+}
+#product-title{
+    color: white;
+    margin-top: 50px;
+    text-align: center;
+}
+/* p{
+    width: 950px;
+    padding: 25px;
+    background: white;
+    font-size: 20px;
+    margin-left: 50px;
+    text-indent: 50px;
+    word-spacing: 10px;
+    text-align: justify;
+} */
