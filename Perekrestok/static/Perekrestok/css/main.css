@@ -1,0 +1,43 @@
+#apple-main{
+    height: 350px;
+    margin-left: 50px;
+    margin-top: 50px;
+    float: left;
+}
+#buy-advice{
+    float: left;
+    height: 100px;
+    /* line-height: 400px; */
+    padding: 180px 10px 0 0px;
+    font-size: 40px;
+    margin-right: 50px;
+    color: white;
+    font-family: 'Lora';
+}
+#buy-link{
+    float: right;
+    font-size: 45px;
+    margin-right: 50px;
+    color: white;
+    margin-right:550px;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    color: white;
+    background-color: rgba(0, 80, 42, 255);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.2) 0px -1px 0px 0px inset;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+#buy-link:hover{
+    background: #006e52;
+
+}
+#like-main{
+    float: right;
+    margin-top: 100px;
+}
+.main-container{
+    height: 1000px;
+}

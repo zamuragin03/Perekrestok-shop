@@ -9,6 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{% static 'Perekrestok/img/logo.png' %}" type="image/x-icon">
     <link type="text/css" rel="stylesheet" href="{% static 'Perekrestok/css/base.css' %}">
+    <noscript>please turn on java script</noscript>
+    <script type="text/javascript" src="{% static 'Perekrestok/js/script.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
+
     {% load page_tags %}
     {% get_menu as menu %}
     <title>{{ title }}</title>
@@ -24,7 +32,21 @@
         <ul class="menu">
             {% for el in menu%}
             <li>
+                {% if el.url_name == 'cart' %}
+                <div class="cart-container" >
+                    <a href="{% url el.url_name %}" id="cart">{{el.title}}</a>
+                    <div id="cart-items" class="cart-items hidden">    
+                        <ul>
+                            <li>test</li>
+                            <li>test</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                {% else %}
                 <a href="{% url el.url_name %}">{{el.title}}</a>
+                {% endif %}
+
             </li>
             {% endfor %}
         </ul>

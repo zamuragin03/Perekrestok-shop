@@ -1,4 +1,15 @@
 {% extends 'Perekrestok/base.html' %}
+{% load static %}
 {% block content %}
+<link type="text/css" rel="stylesheet" href="{% static 'Perekrestok/css/main.css' %}">
+    <div class="main-container">
+        <img id="apple-main" src="{% static 'Perekrestok/img/apple-main.png' %}" alt="apple pic">
+    <h1 id="buy-advice" >На нашем сайте вы можете купить продукты!</h1>
+    <a id="buy-link" href="{% url 'catalog' %}">Каталог</a>
 
+    <img id="like-main" src="{% static 'Perekrestok/img/like.png' %}" alt="apple pic">
+    <!-- <h1 id >На нашем сайте вы можете купить продукты!</h1>
+    <a href="{% url 'catalog' %}">Каталог</a> -->
+    </div>
+    
 {% endblock %}

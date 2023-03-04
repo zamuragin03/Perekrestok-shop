@@ -5,12 +5,24 @@
 
 
 <link type="text/css" rel="stylesheet" href="{% static 'Perekrestok/css/show_item.css' %}">
+<script type="text/javascript" src="{% static 'Perekrestok/js/script.js' %}"></script>
 
 
-<div>
+<div class="prod-container">
     <h1 id="product-title">{{product.title}}</h1>
     {% if product.picture %}
     <img class="picture" src=" {{ product.picture.url }}" alt="">
+    <div class="buy-div">
+        <input class="add-to-cart" type="button" data-id="{{product.pk}}" onclick="AddProductFromShowPage(this)"
+            name="buy" value="Купить">
+        <h3 id="item-count" data-id="{{product.pk}}" data-count="0" class="item-count">0шт</h3>
+        <h3 class="move">В наличии: {{product.amount}} шт.</h3>
+
+    </div>
+    <img class="like-picture" src=" {% static 'Perekrestok/img/like2.png' %}" alt="">
+    <h2 id="good-choice">Отличный выбор!</h2>
+    <p id="prod-desc">{{product.description}}</p>
+
     {% endif %}
 
 </div>

@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Lora:400,700&subset=latin,cyrillic);
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +9,7 @@
 
 html {
     background-color: rgba(0, 128, 67, 255);
-
+    height: 200px;
 }
 
 .header {
@@ -15,7 +17,7 @@ html {
     border-bottom: 2px solid white;
     height: 15vh;
     position: relative;
-    z-index: 0;
+    z-index: 1;
 
 }
 
@@ -24,18 +26,20 @@ html {
     height: 70px;
     background-color: transparent;
     margin: 15px 15px;
-    z-index: 1;
+    z-index: 2;
 }
 
 #logo:hover {
     cursor: pointer;
     opacity: 0.6;
 }
-
+body{
+    min-height: auto;
+}
 .menu {
     height: 15vh;
     line-height: 100px;
-    margin-left: 100px;
+    margin-left: 15px;
     color: white;
     float: left;
     background-color: transparent;
@@ -43,7 +47,7 @@ html {
 }
 
 .content {
-    min-height: 75vh;
+    min-height: 100vh;
 }
 
 .menu li {
@@ -76,7 +80,7 @@ html {
     border-top: 2px solid white;
     background-color: rgba(0, 80, 42, 255);
     position: relative;
-    margin-top: 100vh;
+    /* margin-top: 100%; */
 }
 
 #rights,
@@ -95,4 +99,24 @@ html {
 
 .author-link:hover {
     color: rgba(111, 183, 68, 255);
+}
+.cart-container{
+    position: relative;
+    z-index: 3;
+    /* height:15vh;
+     */
+     height: 100%;
+
+}
+.cart-items{
+    position: absolute;
+    min-height: 200px;
+    width: 300px;
+    background-color: aliceblue;
+    margin-top: 15px;
+    border-radius: 15px;
+    color: black;
+}
+.hidden{
+    display: none;
 }

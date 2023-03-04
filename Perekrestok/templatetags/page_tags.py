@@ -34,3 +34,8 @@ def get_content():
 @register.simple_tag()
 def get_items():
     return Product.objects.all()
+
+@register.simple_tag()
+def get_all_categories():
+    return Category.objects.all()
+

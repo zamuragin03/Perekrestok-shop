@@ -1,3 +1,25 @@
 {% extends 'Perekrestok/base.html' %}
+{% load static %}
 {% block content %}
+<link type="text/css" rel="stylesheet" href="{% static 'Perekrestok/css/cart.css' %}">
+
+<div class="cart-flex-container">
+    <h1 id="cart-h">Корзина</h1>
+    {% for el in cart %}
+    <div class="cart-flex-wrapper">
+        <h1 class="cart-flex-element zero">{{forloop.counter}}</h1>
+        <div class="cart-flex-element first">
+            <a href="{{el.product.get_absolute_url}}">
+                <img src="{{el.product.picture.url}}">
+            </a>
+        </div>
+        <h1 class="cart-flex-element second">{{el.product.title}}</h1>
+        <h1 class="cart-flex-element third">{{el.amount}} штук</h1>
+        <h1 class="cart-flex-element fourth">{{el.total_price}} ₽</h1>
+    </div>
+    {% endfor %}
+    <h1 id="total-price">Итого: {{total_price}} ₽</h1>
+    <button class="buy-button">Заказать</button>
+</div>
+<!-- <h1>{{forloop.counter}} {{el.title}} {{el.amount}} штуки {{el.total_price}}</h1> -->
 {% endblock %}
