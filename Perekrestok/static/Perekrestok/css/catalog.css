@@ -42,6 +42,7 @@
 /* img:hover{
     border: 5px solid white;
 } */
+
 .flex-element img {
     /* height: 30%px; */
     height: 200px;
@@ -106,12 +107,14 @@
     padding: 10px 20px;
     border-bottom: 2px solid white;
 
-
 }
 .cat-container{
     display: flex;
 }
-
+.count-tag::after{
+    content: 'шт. в корзинке';
+    font-size: 15px;
+}
 
 h1 {
     height: 80px;

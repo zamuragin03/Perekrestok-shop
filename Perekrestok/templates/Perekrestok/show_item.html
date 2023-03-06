@@ -15,12 +15,12 @@
     <div class="buy-div">
         <input class="add-to-cart" type="button" data-id="{{product.pk}}" onclick="AddProductFromShowPage(this)"
             name="buy" value="Купить">
-        <h3 id="item-count" data-id="{{product.pk}}" data-count="0" class="item-count">0шт</h3>
+        <h3 id="item-count" data-id="{{product.pk}}" data-count="0" class="item-count">{{ item_count }} шт</h3>
         <h3 class="move">В наличии: {{product.amount}} шт.</h3>
 
     </div>
     <img class="like-picture" src=" {% static 'Perekrestok/img/like2.png' %}" alt="">
-    <h2 id="good-choice">Отличный выбор!</h2>
+    <h2 id="good-choice">{{choice}} выбор!</h2>
     <p id="prod-desc">{{product.description}}</p>
 
     {% endif %}

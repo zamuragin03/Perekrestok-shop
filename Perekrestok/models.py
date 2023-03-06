@@ -43,7 +43,7 @@ class Category(models.Model):
     )
 
     def __str__(self) -> str:
-        return self.name
+        return str(self.name)
 
     class Meta:
         verbose_name = "Категория"
@@ -53,16 +53,39 @@ class Category(models.Model):
 class Cart(models.Model):
     session_key = models.CharField(max_length=128, verbose_name="session_key")
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
-    amount = models.IntegerField(verbose_name="Выбрано")
+    count = models.IntegerField(verbose_name="Выбрано")
     is_paid = models.BooleanField(verbose_name="Оплачено")
     total_price = models.IntegerField(verbose_name="Общая цена", null=True, )
 
 
     def save(self,*args, **kwargs):
-        self.total_price = self.product.price*self.amount
+        self.total_price = self.product.price*self.count
         super(Cart, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = "Корзина"
         verbose_name_plural = "Корзина"
     
 
+class Staff(models.Model):
+    staff_name = models.TextField(verbose_name='Имя')
+    category = models.ForeignKey('UserCategory', on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return self.staff_name
+
+    class Meta:
+        verbose_name = "Тип"
+        verbose_name_plural = "Тип"
+
+class UserCategory(models.Model):
+    name = models.CharField(
+        verbose_name="Категория",
+        max_length=255,
+    )
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = "Тип"
+        verbose_name_plural = "Тип"
+     
