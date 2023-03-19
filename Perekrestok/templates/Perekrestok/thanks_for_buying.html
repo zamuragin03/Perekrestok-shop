@@ -1,14 +1,13 @@
 {% extends 'Perekrestok/base.html' %}
-{% load static %}
 {% block content %}
+{% load static %}
 <link type="text/css" rel="stylesheet" href="{% static 'Perekrestok/css/cart.css' %}">
-
 <div class="cart-flex-container">
-    <h1 id="cart-h">Корзина
-    </h1>
 
-    {% if cart %}
-    {% for el in cart %}
+    {% if order_items %}
+        <h1 id="cart-h">Заказ № {{order_id}}</h1>
+
+    {% for el in order_items %}
     <div data-id="{{el.id}}" data-counter="{{forloop.counter}}" class="cart-flex-wrapper">
         <h1 class="cart-flex-element zero">{{forloop.counter}}</h1>
         <div class="cart-flex-element first">
@@ -27,12 +26,12 @@
     {% endfor %}
     <h1 id="total-price">Итого: {{total_price}} ₽</h1>
     <a class="buy-button" href="{% url 'create_order' %}" >Заказать</a>
-    {% else %}
-        <h1 id="empty-cart" >У вас нет товаров в корзинке 😢</h1>
+    <h1 id="empty-cart" >Купим еще чего-нибудь?🍫</h1>
         <a class="to-catalog" href="{% url 'catalog' %}"  >Каталог<a>
-
+    {% else %}
+        <h1 id="empty-cart" >Вы что-то перепутали😡</h1>
+        <a class="to-catalog" href="{% url 'catalog' %}"  >Каталог<a>
     {% endif %}
    
 </div>
-<!-- <h1>{{forloop.counter}} {{el.title}} {{el.amount}} штуки {{el.total_price}}</h1> -->
 {% endblock %}

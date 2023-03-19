@@ -39,3 +39,6 @@ def get_items():
 def get_all_categories():
     return Category.objects.all()
 
+@register.simple_tag()
+def get_all_payment_methods():
+    return PaymentType.objects.all()

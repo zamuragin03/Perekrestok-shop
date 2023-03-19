@@ -1,0 +1,126 @@
+.input-flex-element {
+    /* width: 100%; */
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 10px;
+    resize: horizontal;
+    height: 50px;
+    margin: 25px auto 15px;
+    font-size: 25px;
+
+}
+.form-element{
+    background-color: rgba(0, 80, 42, 255);
+    color: white;
+}
+.form-element::placeholder{
+    color: rgb(160, 160, 160);
+}
+.create-order-flex {
+    display: flexbox;
+    width: 70%;
+    margin: auto;
+    height: 50px;
+    margin-top: 50px;
+}
+
+#order-form {
+    background-color: #c5c5c53b;
+    height: 1000px;
+    width: 40%;
+    margin: 50px auto;
+    border-radius: 25px 25px 0 0;
+    border-bottom: 5px solid white;
+    border-top: 5px solid white;
+}
+#cart-state{
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    background-color: rgba(0, 80, 42, 255);
+    padding: 10px 20px;
+    word-spacing: 2px;
+    line-height: 45px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid white;
+}
+#order-label {
+    text-align: center;
+    margin-top: 50px;
+    color: white;
+
+}
+
+.choose_type {
+    float: left;
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+}
+
+.choose_type:hover {
+    cursor: pointer;
+}
+
+.choose_type_label {
+    height: 50px;
+    margin: 0 auto 0;
+    margin-left: 50px;
+    font-size: 20px;
+
+    line-height: 25px;
+    color: white;
+}
+.error-message{
+    color: rgb(255, 133, 133);
+    text-align: center;
+    margin: 25px 0 25px;
+
+}
+.to-catalog{
+    cursor: pointer;
+    text-align: center;
+    border: 0;
+    height: 50px;
+    width: 100px;
+    color: white;
+    font-size: 20px;
+    background-color: rgba(0, 80, 42, 255);
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.2) 0px -1px 0px 0px inset;
+    line-height: 50px;
+    display: block;
+    margin: 50px auto;
+    text-decoration: none;
+}
+.to-catalog:hover{
+    background: #006e52;
+}
+#empty-cart{
+    color: white;
+    margin-top:100px;
+    text-align: center;
+}
+button {
+    cursor: pointer;
+    text-align: center;
+    border: 0;
+    height: 60px;
+    width: 120px;
+    font-size: 18px;
+    color: white;
+    background-color: rgba(0, 80, 42, 255);
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.2) 0px -1px 0px 0px inset;
+    line-height: 40px;
+    text-decoration: none;
+    /* float: right; */
+    display: block;
+    margin: 25px auto;
+}
+
+button:hover {
+    background: #006e52;
+
+}

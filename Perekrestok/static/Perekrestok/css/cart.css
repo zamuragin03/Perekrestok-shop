@@ -106,7 +106,6 @@
     line-height: 40px;
     text-decoration: none;
     float: right;
-
 }
 
 .buy-button:hover {
@@ -138,7 +137,6 @@
 }
 .to-catalog:hover{
     background: #006e52;
-
 }
 #empty-cart{
     text-align: center;

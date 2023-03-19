@@ -1,10 +1,64 @@
 
+function CreateOrder(element) {
+    id = element.dataset.id
+    count_tags = $('.count-tag')
+
+    i = element.dataset.counter - 1
+    new_count = parseInt(count_tags[i].dataset.count) + 1
+    count_tags[i].dataset.count = new_count
+    count_tags[i].innerHTML = new_count
+    $.ajax({
+        type: 'GET',
+        url: 'create_order',
+        data: {},
+        dataType: 'text',
+        cache: false,
+        success: function (data) {
+            if (data == "ok") {
+                console.log('ok')
+
+            }
+            else if (data == 'neok') {
+
+            }
+        }
+    })
+}
+
+
+
 function Add_to_cart(element) {
     id = element.dataset.id
     count_tags = $('.count-tag')
 
     i = element.dataset.counter - 1
-    new_count =parseInt(count_tags[i].dataset.count) + 1
+    new_count = parseInt(count_tags[i].dataset.count) + 1
+    count_tags[i].dataset.count = new_count
+    count_tags[i].innerHTML = new_count
+    $.ajax({
+        type: 'GET',
+        url: 'add_to_cart',
+        data: { 'id': id, },
+        dataType: 'text',
+        cache: false,
+        success: function (data) {
+            if (data == "ok") {
+                console.log('ok')
+            }
+            else if (data == 'neok') {
+
+            }
+        }
+    })
+}
+
+
+function Add_to_cart(element) {
+    id = element.dataset.id
+    count_tags = $('.count-tag')
+
+    i = element.dataset.counter - 1
+    new_count = parseInt(count_tags[i].dataset.count) + 1
     count_tags[i].dataset.count = new_count
     count_tags[i].innerHTML = new_count
     $.ajax({
@@ -66,10 +120,10 @@ function DeleteItem(el) {
         cache: false,
         success: function (data) {
             if (data == "ok") {
-                a = document.getElementsByClassName('cart-flex-wrapper')
-                console.log(a[counter])
-                location.reload()
-                // a[counter].remove()
+                // a = document.getElementsByClassName('cart-flex-wrapper')
+                // console.log(a[counter])
+                location.reload() 
+                // a[counter].remove() //dele
             }
             else if (data == 'neok') {
             }
@@ -95,8 +149,8 @@ function change_item_count(el, flag) {
             if (data == "ok") {
                 // a = document.getElementsByClassName('cart-flex-wrapper')
                 // console.log(a[counter])
-                location.reload()
-                // a[counter].remove()
+                location.reload() //uncomment
+                // a[counter].remove() //dele
             }
             else if (data == 'neok') {
                 console.log('neok')

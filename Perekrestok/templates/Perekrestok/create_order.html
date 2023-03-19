@@ -1,0 +1,37 @@
+{% extends 'Perekrestok/base.html' %}
+{% load static %}
+{% block content %}
+{% load page_tags %}
+{% get_all_payment_methods as payment_types %}
+<link type="text/css" rel="stylesheet" href="{% static 'Perekrestok/css/create_order.css' %}">
+
+{% if has_items %}
+    <h1 id="order-label" >Оформление заказа🛒</h1>
+
+    <form id="order-form"  method="POST">
+        {% csrf_token %}
+        {% if error_message %}
+        <h1 class="error-message" >{{error_message}}</h1>
+        {% endif %}
+        <div class="create-order-flex">
+        <input class="input-flex-element form-element" type="text" name="name" placeholder="Имя">
+        <input class="input-flex-element form-element" type="tel" name="phone" placeholder="Номер телефона">
+        <input class="input-flex-element form-element" type="text" name="address" placeholder="Адрес">
+        <input class="input-flex-element form-element" type="text" name="email" placeholder="Почта">
+
+        {% for el in payment_types %}
+        <div class="input-flex-element">
+            <input class="choose_type" type="radio" value="{{el.id}}"  name="PaymentType" >
+            <h1 class="choose_type_label" data-id="{{el.id}}" >{{el.name}}</h1>
+        </div>
+        {% endfor %}
+        <h1 id="cart-state" >В корзинке {{total_count}} товаров. <br> К оплате {{total_price}} рублей</h1>
+        <button type="submit"> Оплатить </button>
+
+        </div>
+    </form>
+{% else %}
+    <h1 id="empty-cart">Что-то вы перепутали 😡</h1>
+    <a class="to-catalog" href="{% url 'catalog' %}" >Каталог<a>
+{% endif %}
+{% endblock %}

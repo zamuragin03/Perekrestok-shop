@@ -30,18 +30,38 @@ def show_item(request: HttpRequest, item_slug):
     item_count = WorkingWithCart.get_selecte_product_count(
         session_key=session_id, slug=item_slug
     )
-    words = ['Превосходный','Замечательный','Отличный','Хороший','Блестящий','Чудесный']
+    words = [
+        "Превосходный",
+        "Замечательный",
+        "Отличный",
+        "Хороший",
+        "Блестящий",
+        "Чудесный",
+    ]
     from random import choice
+
     a = choice(words)
     context = {
         "title": product.title,
         "product": product,
         # 'item-count':item_slug
-        'choice':a,
+        "choice": a,
         "item_count": item_count,
     }
 
     return render(request, "Perekrestok/show_item.html", context=context)
+
+
+def thanks_for_buying(request: HttpRequest):
+    if not request.session.session_key:
+        request.session.save()
+    session_id = request.session.session_key
+    context_success = {}
+    ordered_products = WorkingWithCart.get_cart_products(session_key=session_id)
+    order_id = WorkingWithOrder.get_order_id(session_id=session_id)
+    context_success["order_id"] = order_id
+    context_success["order_items"] = ordered_products
+    return render(request, "Perekrestok/thanks_for_buying.html")
 
 
 class CatalogView(ListView):
@@ -56,20 +76,24 @@ class CatalogView(ListView):
             self.request.session.save()
         session_id = self.request.session.session_key
 
-        prod_list = WorkingWithProducts.get_all_products(session_key=session_id, id=cat_id)
+        prod_list = WorkingWithProducts.get_all_products(
+            session_key=session_id, id=cat_id
+        )
         context = {
             "title": "Каталог",
             "products": prod_list,
             "cat_selected": int(cat_id),
         }
         return render(request, "Perekrestok/catalog.html", context=context)
-    
+
     def get_queryset(self):
         if not self.request.session.session_key:
             self.request.session.save()
         session_id = self.request.session.session_key
-        res = WorkingWithCart.get_products_and_cart_amount(session_key=session_id)
-        return res
+        prod_list = WorkingWithProducts.get_all_products(
+            session_key=session_id, id="0"
+        )
+        return prod_list
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
@@ -102,6 +126,7 @@ class add_to_cart(ListView):
             request.session.save()
         session_id = request.session.session_key
         id = request.GET["id"]
+        print(id)
         WorkingWithCart.add_to_cart(session_key=session_id, prod_id=id)
         return HttpResponse("ok", content_type="text/html")
 
@@ -126,16 +151,61 @@ class CartView(ListView):
         total_price = WorkingWithCart.get_total_sum(session_key=session_id)
         context["total_price"] = total_price
         return context
+    
+class create_order(TemplateView):
+    template_name = "Perekrestok/create_order.html"
 
-    # def post(self, request, *args, **kwargs):
-    #     cat_id = request.POST.get("category")
-    #     prod_list = WorkingWithProducts.get_all_products(id=cat_id)
-    #     context = {
-    #         "title": "Каталог",
-    #         "products": prod_list,
-    #         "cat_selected": int(cat_id)
-    #                }
-    #     return render(request, "Perekrestok/catalog.html", context=context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Оформление заказа"
+        if not self.request.session.session_key:
+            self.request.session.save()
+        session_id = self.request.session.session_key
+        total_price = WorkingWithCart.get_total_sum(session_key=session_id)
+        total_count = WorkingWithCart.get_overall_count(session_key=session_id)
+        has_items = WorkingWithCart.has_cart_products(session_key=session_id)
+        context["total_price"] = total_price
+        context["total_count"] = total_count
+        context["has_items"] = has_items
+        return context
+
+    def post(self, request, *args, **kwargs):
+        if not request.session.session_key:
+            request.session.save()
+        name = request.POST.get("name")
+        phone = request.POST.get("phone")
+        address = request.POST.get("address")
+        pymntType = request.POST.get("PaymentType")
+        email = request.POST.get("email")
+        session_id = request.session.session_key
+        props = [
+            str(name).strip(),
+            str(phone).strip(),
+            str(address).strip(),
+            str(pymntType).strip(),
+            str(email).strip,
+        ]
+        context = {}
+        # context_success = {}
+        # ordered_products = WorkingWithCart.get_cart_products(session_key=session_id)
+        # order_id = WorkingWithOrder.get_order_id(session_id=session_id)
+        # context_success["order_id"] = order_id
+        # context_success["order_items"] = ordered_products
+        if "" in props:
+            context = {"error_message": "Есть незаполненные поля!",'title':'Проверьте поля'}
+
+            return render(request, "Perekrestok/create_order.html", context=context)
+        WorkingWithCostumers.create_costumer(phone=phone, name=name, email=email)
+        WorkingWithOrder.create_order(
+            address=address,
+            name=name,
+            phone=phone,
+            payment_id=pymntType,
+            session_id=session_id,
+        )
+        WorkingWithCart.finish_cart(session_key=session_id)
+
+        return redirect('thanks_for_buying')
 
 
 class ProdcuctAPI(generics.ListAPIView):
