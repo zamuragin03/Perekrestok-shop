@@ -7,7 +7,7 @@ class WorkingWithCart():
         c = Cart.objects.filter(
             session_key=session_key,
             product=Product.objects.get(id=prod_id),
-            is_paid=0
+            order_id__isnull=True
         ).all()
         print(c)
         if not c.exists():
@@ -21,7 +21,9 @@ class WorkingWithCart():
         else:
             c = Cart.objects.get(
                 session_key=session_key, product=Product.objects.get(
-                    id=prod_id)
+                    id=prod_id,
+                    ),
+                    is_paid=False
             )
             c.count += 1
             c.save()
@@ -117,6 +119,13 @@ class WorkingWithCart():
             prod.is_paid = True
             prod.save()
 
+    def get_finished_order_products(session_key, order_id):
+        return Cart.objects.filter(session_key=session_key, order_id=order_id)
+    
+    def get_finished_order_summ(order_id):
+        return sum(int(el.total_price) for el in Cart.objects.filter(order_id=order_id))
+
+        
 
 class WorkingWithProducts():
     def get_all_products(session_key, id):
@@ -138,8 +147,7 @@ class WorkingWithProducts():
             pc.total_price,
             pc.order_id, 
             pc.product_id 
-            from Perekrestok_product  pp left join Perekrestok_cart pc on pp.id=pc.product_id and pc.is_paid=0
-            where ( pc.session_key="{session_key}" or pc.session_key is NULL) order by pp.id
+            from Perekrestok_product  pp left join Perekrestok_cart pc on pp.id=pc.product_id and pc.is_paid=0 and pc.session_key="{session_key}"
                         """
             res = Product.objects.raw(query)
             return res
@@ -160,15 +168,13 @@ class WorkingWithProducts():
             pc.total_price,
             pc.order_id, 
             pc.product_id 
-            from Perekrestok_product  pp left join Perekrestok_cart pc on pp.id=pc.product_id and pc.is_paid=0
-            where ( pc.session_key="{session_key}" or pc.session_key is NULL) and
-			pp.category_id= {id}
+            from Perekrestok_product  pp left join Perekrestok_cart pc on pp.id=pc.product_id and pc.is_paid=0 and pc.session_key="{session_key}"
+            where pp.category_id= {id}
 			order by pp.id 
         '''
         res = Product.objects.raw(query)
         for el in res:
             if el.count is None:
-                print("None found")
                 el.count = 0
             if el.is_paid == 1:
                 el.count = 0
@@ -182,7 +188,6 @@ class WorkingWithOrder():
     def create_order(name, address, phone, payment_id, session_id):
         order = Order()
         order.save()
-        print(order.order_number)
         prods = Cart.objects.filter(session_key=session_id, is_paid=False)
         for prod in prods:
             prod.order_id = order.id
@@ -196,7 +201,7 @@ class WorkingWithOrder():
         o.save()
 
     def get_order_id(session_id):
-        order = Cart.objects.filter(session_key=session_id).order_by('order_id')
+        order = Cart.objects.filter(session_key=session_id).order_by('-order_id')
         return order[0].order_id
 
 

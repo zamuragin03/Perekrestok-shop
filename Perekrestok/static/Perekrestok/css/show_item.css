@@ -11,7 +11,7 @@
 .like-picture{
     display: block;
     float: right;
-    width: 600px;
+    height: 400px;
     margin-left: 100px;
     margin-top: -50px;
 
@@ -23,7 +23,7 @@
     line-height: 100px;
     margin-left: 200px;
     font-size: 45px;
-    width: 100%;
+    margin-left: 900px;
     text-align: center;
     color: white;
 
@@ -34,7 +34,7 @@
 .elements{
     margin-left: 50px;
     font-size: 40px;
-    width: 900px;
+    /* width: 900px; */
     background: white;
     padding: 50px;
     line-height: 70px;

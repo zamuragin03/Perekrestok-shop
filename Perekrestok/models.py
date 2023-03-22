@@ -30,7 +30,7 @@ class Product(models.Model):
         return str(self.title)
 
     def get_absolute_url(self):
-        return "item/" + self.slug
+        return reverse("show_item", kwargs={ 'item_slug':self.slug})
 
     class Meta:
         verbose_name = "Продукт"
@@ -56,7 +56,7 @@ class Cart(models.Model):
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
     count = models.IntegerField(verbose_name="Выбрано")
     is_paid = models.BooleanField(verbose_name="Оплачено")
-    total_price = models.IntegerField(verbose_name="Общая цена", null=True, )
+    total_price = models.IntegerField(verbose_name="Общая цена", null=True,editable = False )
     order_id = models.SmallIntegerField(
         verbose_name='Номер заказа', null=True,)
 
@@ -72,7 +72,7 @@ class Cart(models.Model):
 class Costumer_Info(models.Model):
     phone = models.CharField(max_length=20)
     name = models.CharField(max_length=20, verbose_name='Имя')
-    email = models.EmailField()
+    email = models.CharField(verbose_name='Email',max_length=319)
     def __str__(self) -> str:
         return self.name
 
@@ -89,7 +89,7 @@ class Orders_Info(models.Model):
     status = models.ForeignKey('Order_Status', on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return str(self.id)
+        return str(self.id) # type: ignore
 
     class Meta:
         verbose_name = "Заказ"
@@ -97,13 +97,13 @@ class Orders_Info(models.Model):
 
 
 class Order(models.Model):
-    order_number = models.SmallIntegerField(verbose_name='Номер заказа', null=True)
+    order_number = models.SmallIntegerField(verbose_name='Номер заказа', null=True,default=0)
     def save(self, *args, **kwargs):
         self.order_number = self.id
         super(Order, self).save(*args, **kwargs)
     
     def __str__(self) -> str:
-        return str(self.order_number)
+        return str(self.id)
 
 
 class PaymentType(models.Model):

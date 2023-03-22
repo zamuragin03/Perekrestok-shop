@@ -14,15 +14,20 @@
         <h1 class="error-message" >{{error_message}}</h1>
         {% endif %}
         <div class="create-order-flex">
-        <input class="input-flex-element form-element" type="text" name="name" placeholder="Имя">
-        <input class="input-flex-element form-element" type="tel" name="phone" placeholder="Номер телефона">
-        <input class="input-flex-element form-element" type="text" name="address" placeholder="Адрес">
-        <input class="input-flex-element form-element" type="text" name="email" placeholder="Почта">
+        <input class="input-flex-element form-element" type="text" name="name" placeholder="Имя" value="{{name}}" >
+        <input class="input-flex-element form-element" type="tel" name="phone" placeholder="Номер телефона" value="{{phone}}">
+        <input class="input-flex-element form-element" type="text" name="address" placeholder="Адрес" value="{{address}}" >
+        <input class="input-flex-element form-element" type="text" name="email" placeholder="Почта" value="{{email}}" >
 
         {% for el in payment_types %}
         <div class="input-flex-element">
-            <input class="choose_type" type="radio" value="{{el.id}}"  name="PaymentType" >
+            {% if el.id == payment %}
+            <input class="choose_type" type="radio" value="{{payment}}" checked  name="PaymentType" >
+            <h1 class="choose_type_label" data-id="{{payment}}" >{{el.name}}</h1>
+            {% else %}
+            <input class="choose_type" type="radio" value="{{el.id}}"name="PaymentType" >
             <h1 class="choose_type_label" data-id="{{el.id}}" >{{el.name}}</h1>
+            {% endif %}
         </div>
         {% endfor %}
         <h1 id="cart-state" >В корзинке {{total_count}} товаров. <br> К оплате {{total_price}} рублей</h1>

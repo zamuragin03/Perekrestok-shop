@@ -13,9 +13,9 @@
     {% if product.picture %}
     <img class="picture" src=" {{ product.picture.url }}" alt="">
     <div class="buy-div">
-        <input class="add-to-cart" type="button" data-id="{{product.pk}}" onclick="AddProductFromShowPage(this)"
+        <input class="add-to-cart" type="button" data-id="{{product.pk}}" onclick="AddToCartFromShowPage(this)"
             name="buy" value="Купить">
-        <h3 id="item-count" data-id="{{product.pk}}" data-count="0" class="item-count">{{ item_count }} шт</h3>
+        <h3 id="item-count" data-id="{{product.pk}}" data-count="{{item_count}}" class="item-count">{{ item_count }} шт</h3>
         <h3 class="move">В наличии: {{product.amount}} шт.</h3>
 
     </div>

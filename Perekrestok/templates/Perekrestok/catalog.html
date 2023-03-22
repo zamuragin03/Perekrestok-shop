@@ -13,8 +13,8 @@
 
 
 <div>
-    <!-- <button onclick="AjaxTest(this)" class="buy-button" data-id="{{el.pk}}">Купить</button> -->
     <form class="cat-form" method="POST">
+        <meta name="csrf-token" content="{{ csrf_token }}">
         {% csrf_token %}
         {% for cat in cats %}
         <div class="cat-container">

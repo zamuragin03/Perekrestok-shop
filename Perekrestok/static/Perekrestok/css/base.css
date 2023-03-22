@@ -27,11 +27,15 @@ html {
     background-color: transparent;
     margin: 15px 15px;
     z-index: 2;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 #logo:hover {
     cursor: pointer;
     opacity: 0.6;
+    
 }
 body{
     min-height: auto;
@@ -67,12 +71,16 @@ body{
     font-size: 30px;
     display: flex;
     font-weight: 500;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 
 }
 
 .menu li a:hover {
     cursor: pointer;
     color: rgba(111, 183, 68, 255);
+    
 }
 
 .footer {

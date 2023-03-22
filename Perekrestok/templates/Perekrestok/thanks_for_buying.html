@@ -18,20 +18,15 @@
         <h1 class="cart-flex-element second">{{el.product.title}}</h1>
         <h1 class="cart-flex-element third">{{el.count}} шт</h1>
         <h1 class="cart-flex-element fourth">{{el.total_price}} ₽</h1> 
-        <h1 data-id="{{el.id}}" data-counter="{{forloop.counter}}" class="cart-flex-element minus" onclick="change_item_count(this, '-')" >➖</h1> 
-        <h1 data-id="{{el.id}}" data-counter="{{forloop.counter}}" class="cart-flex-element fifth" onclick="DeleteItem(this)" >🚫</h1>
-        <h1 data-id="{{el.id}}" data-counter="{{forloop.counter}}" class="cart-flex-element plus" onclick="change_item_count(this, '+')" >➕</h1> 
 
     </div>
     {% endfor %}
     <h1 id="total-price">Итого: {{total_price}} ₽</h1>
-    <a class="buy-button" href="{% url 'create_order' %}" >Заказать</a>
     <h1 id="empty-cart" >Купим еще чего-нибудь?🍫</h1>
         <a class="to-catalog" href="{% url 'catalog' %}"  >Каталог<a>
     {% else %}
         <h1 id="empty-cart" >Вы что-то перепутали😡</h1>
-        <a class="to-catalog" href="{% url 'catalog' %}"  >Каталог<a>
-    {% endif %}
-   
+        <a class="to-catalog" href="{% url 'catalog' %}"  >Каталог<a> 
+     {% endif %}
 </div>
 {% endblock %}

@@ -18,6 +18,9 @@
     line-height: 150px;
     height: 150px;
     margin-bottom: 10px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 .zero {

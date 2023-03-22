@@ -21,17 +21,6 @@ def get_menu():
     return site_menu
 
 @register.simple_tag()
-def get_content():
-    links = [
-        {'name':'Шлюкоза'},
-        {'name':'калий, магний, натрий, кальций, железо, фосфор, цинк, медь'},
-        {'name':'Фруктоза'},
-        {'name':'Сахароза'},
-        {'name':'Глюкоза'},
-    ]
-    return links
-
-@register.simple_tag()
 def get_items():
     return Product.objects.all()
 
